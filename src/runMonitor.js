@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+const sendEmail = require("./utils/sendEmail");
 
 puppeteer.use(StealthPlugin());
 
@@ -54,7 +55,11 @@ const runMonitor = async (monitor) => {
     console.log(
       `Monitor ${monitor.description} yields VALID with content ${content} at ${now}`
     );
-    // Notify / send email here
+    // prepare email data
+    const subject = `[${monitor.key}] Valid Result`;
+    const body = `Monitor ${monitor.description} yields VALID with content ${content} at ${now}`;
+    // send email
+    sendEmail(subject, body);
     return true;
   }
 

@@ -6,13 +6,20 @@
   "scripts": {
     "start": "node src/index.js",
     "single": "node src/cli.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:start": "nodemon src/index.js",
+    "dev:single": "nodemon src/cli.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cron": "^1.8.2",
+    "dotenv": "^16.0.3",
+    "form-data": "^4.0.0",
+    "mailgun.js": "^8.0.1",
     "puppeteer-extra": "^3.2.3",
     "puppeteer-extra-plugin-stealth": "^2.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
