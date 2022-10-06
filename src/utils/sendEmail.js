@@ -25,22 +25,22 @@ if (!process.env.MAILGUN_EMAIL_TO) {
 
 const DOMAIN = process.env.DOMAIN;
 const MAILGUN_EMAIL_FROM_NAME = process.env.MAILGUN_EMAIL_FROM_NAME;
-const MAILGUN_EMAIL_FROM_TO = process.env.MAILGUN_EMAIL_FROM_TO;
+const MAILGUN_EMAIL_TO = process.env.MAILGUN_EMAIL_TO;
 
 const sendEmail = (subject, body) =>
   mailgunClient.messages
     .create(DOMAIN, {
       from: `${MAILGUN_EMAIL_FROM_NAME} <events@${DOMAIN}>`,
-      to: MAILGUN_EMAIL_FROM_TO,
+      to: MAILGUN_EMAIL_TO,
       subject,
       text: body,
     })
     .then((res) => {
-      console.log(`Email sent to ${data.to}`);
+      console.log(`Email sent to ${MAILGUN_EMAIL_TO}`);
       //   console.log(res);
     })
     .catch((err) => {
-      console.error(`Failed to send email to ${data.to}`);
+      console.error(`Failed to send email to ${MAILGUN_EMAIL_TO}`);
       console.error(err);
     });
 
