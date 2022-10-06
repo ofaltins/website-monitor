@@ -11,9 +11,9 @@ if (!process.env.DOMAIN) {
   throw new Error("Please set `DOMAIN` value in environment variable");
 }
 
-if (!process.env.MAILGUN_EMAIL_FROM_NAME) {
+if (!process.env.MAILGUN_EMAIL_FROM) {
   throw new Error(
-    "Please set `MAILGUN_EMAIL_FROM_NAME` value in environment variable"
+    "Please set `MAILGUN_EMAIL_FROM` value in environment variable"
   );
 }
 
@@ -24,13 +24,13 @@ if (!process.env.MAILGUN_EMAIL_TO) {
 }
 
 const DOMAIN = process.env.DOMAIN;
-const MAILGUN_EMAIL_FROM_NAME = process.env.MAILGUN_EMAIL_FROM_NAME;
+const MAILGUN_EMAIL_FROM = process.env.MAILGUN_EMAIL_FROM;
 const MAILGUN_EMAIL_TO = process.env.MAILGUN_EMAIL_TO;
 
 const sendEmail = (subject, body) =>
   mailgunClient.messages
     .create(DOMAIN, {
-      from: `${MAILGUN_EMAIL_FROM_NAME} <events@${DOMAIN}>`,
+      from: MAILGUN_EMAIL_FROM,
       to: MAILGUN_EMAIL_TO,
       subject,
       text: body,
